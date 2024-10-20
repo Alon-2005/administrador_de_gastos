@@ -1,0 +1,106 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #eef1f5; /* Fondo gris claro */
+}
+
+/* Estilo del encabezado y pie de página */
+header, footer {
+    background-color: #2c3e50; /* Azul oscuro */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Navegación */
+nav {
+    background-color: #34495e; /* Azul más claro */
+}
+
+nav ul {
+    list-style-type: none; /* Sin viñetas */
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline; /* Elementos en línea */
+    margin: 0 15px; /* Espacio entre enlaces */
+}
+
+nav ul li a {
+    color: white; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Sección principal */
+.card {
+    background: white; /* Fondo blanco */
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #bdc3c7; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
+}
+
+/* Resumen de gastos */
+.resumen {
+    margin-top: 20px;
+}
+
+/* Estilos de formularios */
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block; /* Etiquetas en bloque */
+    margin-bottom: 5px; /* Espacio debajo de las etiquetas */
+    color: #34495e; /* Color de texto oscuro */
+}
+
+form input {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espacio interno */
+    margin-bottom: 15px; /* Espacio entre campos */
+    border: 1px solid #bdc3c7; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Botones */
+button {
+    background-color: #2980b9; /* Azul más vibrante */
+    color: white; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espacio interno */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano */
+}
+
+/* Efecto hover para botones */
+button:hover {
+    background-color: #3498db; /* Color más claro al pasar el mouse */
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 600px) {
+    nav ul {
+        display: flex;
+        flex-direction: column; /* Cambiar a columna */
+        align-items: center; /* Centrar enlaces */
+    }
+    
+    nav ul li {
+        margin: 5px 0; /* Espacio vertical */
+    }
+
+    .card {
+        margin: 5px; /* Espacio reducido en móviles */
+        padding: 15px; /* Espacio interno reducido */
+    }
+}

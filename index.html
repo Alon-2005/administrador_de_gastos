@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, content="initial-scale=1.0">
+    <title>Administrador de Gastos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Administrador de Gastos</h1>
+        <a href="https://github.com/Alon-2005/administrador_de_gastos.git" target="_blank">Visita mi página web</a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#seccion1" onclick="mostrarSeccion('seccion1')">Resumen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="seccion1" class="card">
+            <h2>Resumen de Gastos</h2>
+            <p>Aquí puedes ver un resumen general de tus gastos del mes.</p>
+            <div>
+                <label for="saldoInicial">Saldo Inicial:</label>
+                <input type="number" id="saldoInicial" placeholder="Ingresa tu saldo inicial" onchange="actualizarSaldo()">
+            </div>
+
+            <form id="gastosForm" onsubmit="agregarGasto(event)">
+                <label for="descripcion">Descripción del Gasto:</label>
+                <input type="text" id="descripcion" name="descripcion" required>
+                
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" required>
+                
+                <button type="submit">Agregar Gasto</button>
+            </form>
+
+            <form id="depositosForm" onsubmit="agregarDeposito(event)">
+                <label for="montoDeposito">Monto del Depósito:</label>
+                <input type="number" id="montoDeposito" name="montoDeposito" required>
+                
+                <button type="submit">Agregar Depósito</button>
+            </form>
+
+            <div id="resumen-gastos" class="resumen">
+                <h3>Gastos</h3>
+                <div id="lista-gastos" class="lista">
+                    <!-- Aquí se agregarán dinámicamente los gastos -->
+                </div>
+                <div id="saldoRestante" class="saldo">
+                    <!-- Saldo restante -->
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Derechos reservados © 2024</p>
+    </footer>
+
+    <script>
+        let saldoInicial = 0;
+        let gastos = [];
+        let totalGastos = 0;
+        let totalDepositos = 0;
+
+        function actualizarSaldo() {
+            saldoInicial = parseFloat(document.getElementById('saldoInicial').value) || 0;
+            mostrarSaldoRestante();
+        }
+
+        function agregarGasto(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            const descripcion = document.getElementById('descripcion').value;
+            const monto = parseFloat(document.getElementById('monto').value);
+
+            gastos.push({ descripcion, monto });
+            totalGastos += monto;
+            mostrarGastos();
+            mostrarSaldoRestante();
+
+            // Limpiar los campos del formulario
+            document.getElementById('gastosForm').reset();
+        }
+
+        function agregarDeposito(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            const montoDeposito = parseFloat(document.getElementById('montoDeposito').value);
+            totalDepositos += montoDeposito;
+            mostrarSaldoRestante();
+
+            // Limpiar los campos del formulario
+            document.getElementById('depositosForm').reset();
+        }
+
+        function mostrarGastos() {
+            const listaGastos = document.getElementById('lista-gastos');
+            listaGastos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos gastos
+            gastos.forEach(gasto => {
+                const gastoElement = document.createElement('div');
+                gastoElement.textContent = `${gasto.descripcion}: $${gasto.monto.toFixed(2)}`;
+                listaGastos.appendChild(gastoElement);
+            });
+        }
+
+        function mostrarSaldoRestante() {
+            const saldoRestante = saldoInicial + totalDepositos - totalGastos;
+            document.getElementById('saldoRestante').textContent = `Saldo Restante: $${saldoRestante.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
